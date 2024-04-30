@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCK - Synthesis of Chemical Knowledge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <meta name="description" content="Trắc nghiệm thực tế hóa học THPT chương trình GDPT2018">
+    <meta name="keywords" content="trắc nghiệm, hóa học, thực tế, THPT, chương trình GDPT2018, trắc nghiệm hóa học">
+    <meta name="author" content="Quoc Tin Ly Tran">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <menu ></menu>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <section class="begin">
+      <h1 class="welcome">Bạn đã sẵn sàng chưa?</h1>
+      <img class="yellow_dragon_img" src="https://scontent.fvca1-3.fna.fbcdn.net/v/t39.1997-6/17351439_2041012116126262_5791300611634888704_n.png?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHdbYTu73i5-aYRaMZzebjE984FEmhJ2dP3zgUSaEnZ06OWbxU6gE-iT05lnITW0ytY9Apx1MBv6QxNpUbUEoND&_nc_ohc=z7JZKfg-U3kAb6KiUmG&_nc_oc=AdgO55ulqosapUOqHdicrxHuwSQWU4JLoZvRZ8cmsH_bJkWzuoEE7yTokorRm7VvoGjytu3XrSnVyJZmXjtBMTbL&_nc_ht=scontent.fvca1-3.fna&oh=00_AfCMJULZPvCUGliRtvjJ58s1_hrOc_wKwvwm8IkJlY82iw&oe=6633FDE3" alt="yellow dragon" >
+      <section class="status">
+        <button class="ready" id="ready">Bắt đầu</button>
+        <button class="cancel" id="cancel">Trang chủ</button>
+      </section>
+    </section>
+
+    <div class="quiz_wrapper">
+      <div class="quiz_header">
+        <div class="quiz_timer">
+          <i class="fa-regular fa-clock"></i>
+          <div class="quiz_timer_text">
+            <span>Time remaining</span>
+            <p id="timer">00:00:00</p>
+          </div>
+        </div>
+        <button id="quiz_submit" class="quiz_submit">SUBMIT</button>
+      </div>
+      <div class="quiz_container">
+        <div class="quiz_question">
+          <h5>Question 1 of 10</h5>
+          <p id="quiz_title">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+            delectus et magni harum atque, ex nostrum quaerat?
+          </p>
+          <ul>
+            <li><span>A.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>B.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>C.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>D.</span><span class="quiz_answer_item">harum</span></li>
+          </ul>
+        </div>
+        <div class="quiz_progress">
+          <svg>
+            <circle r="50"></circle>
+            <circle id="progress" r="50"></circle>
+          </svg>
+          <span id="progress_text">9/10</span>
+        </div>
+      </div>
+      <div class="quiz_numbers">
+        <button id="quiz_prev">Prev</button>
+        <ul></ul>
+        <button id="quiz_next">Next</button>
+      </div>
+    </div>
+  </body>
+  <script src="./main.js"></script>
+</html>
+  
