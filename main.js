@@ -235,7 +235,6 @@ const quiz = {
           quizQuestions[currentIndex].classList.add("selected");
           listSubmit[currentIndex] = index;
           this.handleProgress();
-          quizNext.click();
         } else {
           return;
         }
