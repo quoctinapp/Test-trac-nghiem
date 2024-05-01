@@ -308,7 +308,7 @@ const quiz = {
       }
       result_user.innerText = user;
       result_time.innerText = formatTime(data.time);
-      result_percentage.innerText = (data.correct / data.incorrect) * 100 + "%";
+      result_percentage.innerText = ((data.correct / (data.correct + data.incorrect)) * 100).toFixed(2) + "%";
       result_score.innerText = data.score;
       wrong_answer.innerText = data.incorrect;
       right_answer.innerText = data.correct; 
