@@ -15,41 +15,61 @@ const home = document.getElementById("cancel");
 const begin_scene = document.querySelector(".begin");
 const main_scene = document.querySelector(".quiz_wrapper");
 const begin = document.querySelector(".begin");
+const result_scene = document.querySelector(".results");
+const nameUserInput = document.getElementById("InputUserName");
+
+const result_user = document.getElementById("name_user");
+const result_time = document.getElementById("result_time");
+const right_answer = document.getElementById("result_right_answer");
+const wrong_answer = document.getElementById("result_wrong_answer");
+const result_score = document.getElementById("result_score");
+const result_percentage = document.getElementById("result_percentage");
+
+const result_home = document.querySelector(".result_home");
+const close_btn = document.querySelector(".close");
+const statistical = document.querySelector(".statistical");
 let questions;
 let currentIndex = null;
 let listSubmit = []; 
 let listResults = []; 
 let isSubmit = false;
-let submitTime = 0;
-const API ="https://script.google.com/macros/s/AKfycbxGgFeXihHaWdIcHlwJzk5v4QtkbStE5eOc0rxhRTUJxht7HR-Zm2u7pZXkZs4Kqxjr_w/exec";
+
+const API ="https://script.google.com/macros/s/AKfycbw8vv4esstKEnDGGDilwtWV7OKIpmqbX7OUXJ0yzGNFe610K-CBlwS0gMxOIL2fF_x0yw/exec";
 function randomArray(array) {
   return (array = array.sort(() => Math.random() - Math.random()));
 }
-ready.addEventListener("click", function(e){
-  setTimeout(() => {
-    begin.innerHTML = "3";
+
+ready.addEventListener("click", function(e) {
+  if(nameUserInput.value !== ''){
+    localStorage.setItem("user", nameUserInput.value);
     setTimeout(() => {
-      begin.innerHTML = "2";
+      begin.innerHTML = "3";
       setTimeout(() => {
+        begin.innerHTML = "2";
         setTimeout(() => {
-          begin.innerHTML = "1";
           setTimeout(() => {
-            begin_scene.style.opacity = 0;
-            begin_scene.style.pointerEvents = "none"; 
-            begin_scene.style.zIndex = "0";
-            main_scene.style.opacity = 1;
-            main_scene.style.pointerEvents = "auto"; 
-            main_scene.style.zIndex = "10";
-            main_scene.style.animation = "zoom ease-in-out 3s";
+            begin.innerHTML = "1";
             setTimeout(() => {
-              quiz.start();
-            }, 800);
+              begin_scene.style.opacity = 0;
+              begin_scene.style.pointerEvents = "none";
+              begin_scene.style.zIndex = "0";
+              main_scene.style.opacity = 1;
+              main_scene.style.pointerEvents = "auto";
+              main_scene.style.zIndex = "10";
+              main_scene.style.animation = "zoom ease-in-out 3s";
+              setTimeout(() => {
+                quiz.start();
+              }, 800);
+            }, 1000);
           }, 1000);
         }, 1000);
       }, 1000);
-    }, 1000);  
-  }, 1000);
+    }, 1000);
+  } else {
+    alert("Bạn ơi, bạn chưa nhập tên kìa");
+  }
 });
+
 home.addEventListener("click", function(e){
   alert("Bạn có chắc muốn trở về trang chủ khi chưa làm bài không?");
   window.location.href = "home.html";
@@ -225,35 +245,95 @@ const quiz = {
   saveToLocalStorage: function (id, data) {
     localStorage.setItem(id, JSON.stringify(data));
   },
+  DisplayStatistical: function(){
+    result_scene.style.opacity = "1";
+    result_scene.style.pointerEvents = "auto"; 
+    result_scene.style.zIndex = "10";
+    result_scene.style.animation = "zoom ease-in-out 3s";
+  
+    close_btn.style.opacity = "1";
+    close_btn.style.pointerEvents = "auto"; 
+    close_btn.style.zIndex = "10";
+    
+    main_scene.style.opacity = "0";
+    main_scene.style.pointerEvents = "none"; 
+    main_scene.style.zIndex = "0";
+  
+    $(document).ready(function(){
+      var element = $("#results")[0]; 
+  
+      $("#shareImgData").on('click', function () {
+        html2canvas(element, {
+          onrendered: function(canvas) {
+            var imgageData = canvas.toDataURL("image/png");
+            var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+            $("<a>").attr("download", "LifeChemicalTest.png").attr("href", newData)[0].click();
+          }
+        });
+      });
+    });
+  },
+  DisplayMainScene: function(){
+    result_scene.style.opacity = "0";
+    result_scene.style.pointerEvents = "none"; 
+    result_scene.style.zIndex = "0";
+
+    close_btn.style.opacity = "0";
+    close_btn.style.pointerEvents = "none"; 
+    close_btn.style.zIndex = "0";
+    
+    main_scene.style.opacity = "1";
+    main_scene.style.pointerEvents = "auto"; 
+    main_scene.style.zIndex = "10";
+    main_scene.style.animation = "zoom ease-in-out 3s";
+  },
+  CheckData: function(){
+    function formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const remainingSeconds = seconds % 60;
+  
+      const formattedHours = String(hours).padStart(2, '0');
+      const formattedMinutes = String(minutes).padStart(2, '0');
+      const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+  
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+    const tmp = localStorage.getItem("DataExam");
+    if(tmp){
+      const data = JSON.parse(tmp);
+      let user = data.user;
+      if(!user){
+        user = "Default";
+      }
+      result_user.innerText = user;
+      result_time.innerText = formatTime(data.time);
+      result_percentage.innerText = (data.correct / data.incorrect) * 100 + "%";
+      result_score.innerText = data.score;
+      wrong_answer.innerText = data.incorrect;
+      right_answer.innerText = data.correct; 
+      statistical.style.opacity = "1";
+      statistical.style.zIndex = 10;
+      statistical.style.pointerEvents = "auto";
+      statistical.addEventListener("click", (e)=>{
+        this.DisplayStatistical();
+      });
+      close_btn.addEventListener("click", (e)=>{
+        this.DisplayMainScene();
+      } );
+      }
+      result_home.addEventListener("click", (e)=>{
+        alert("Bạn có chắc muốn làm bài lại không? Kết quả hiện tại sẽ không được lưu trữ");
+        localStorage.clear();
+        sessionStorage.clear();
+        location.reload(true);
+      });
+  },
   handleSubmit: function () {
     quizSubmit.addEventListener("click", () => {
       const progressLen = listSubmit.filter((item) => item >= 0);
       if (progressLen.length === questions.length) {
         this.getResults();
-        const delaySubmit = () => {
-          const checkLocalStorage = () => {
-            const totalTime = localStorage.getItem("Totaltime");
-            if (totalTime !== null) {
-              clearInterval(intervalId);
-              submitTime += 1; 
-              console.log("Total time: ", totalTime);
-              const correctCount = listResults.filter((result, index) => result === listSubmit[index]).length;
-              const incorrectCount = listResults.length - correctCount; 
-              const totalQuestions = questions.length; 
-              const score = (totalQuestions / 10) * correctCount; 
-              const data = {
-                time: totalTime,
-                correct: correctCount,
-                incorrect: incorrectCount,
-                score: score
-              };
-              const id = "Lần " + submitTime; 
-              this.saveToLocalStorage(id, data);
-            }
-          };
-          const intervalId = setInterval(checkLocalStorage, 1000); 
-        };
-        delaySubmit();
       } else {
         alert("Bạn chưa chọn hết đáp án");
       }
@@ -272,9 +352,35 @@ const quiz = {
         listResults[index] = item.answers.indexOf(result.answer);
       }
     });
+    const delaySubmit = () => {
+      const checkLocalStorage = () => {
+        const totalTime = localStorage.getItem("Totaltime");
+        if (totalTime !== null) {
+          clearInterval(intervalId);
+          const user_name = localStorage.getItem("user");
+          const incorrectCount = questions.length - correct; 
+          const totalQuestions = questions.length; 
+          const score = (10 / totalQuestions) * correct; 
+          const data = {
+            user: user_name,
+            time: totalTime,
+            correct: correct,
+            incorrect: incorrectCount,
+            score: score
+          };
+          const id = "DataExam"; 
+          this.saveToLocalStorage(id, data);
+          this.CheckData();
+          this.handleProgress(correct);
+        }
+      };
+      const intervalId = setInterval(checkLocalStorage, 1000);
+      return true; 
+    };
+    
     isSubmit = true;
-    this.handleProgress(correct);
     quizQuestions[0].click();
+    delaySubmit(); 
   },
   handleKeyDown: function () {
     document.addEventListener("keydown", (e) => {

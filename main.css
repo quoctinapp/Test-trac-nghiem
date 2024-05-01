@@ -28,7 +28,8 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 10;
-  opacity: 1;
+  opacity: 10;
+  pointer-events: auto;
   background: url(./begin_background2.png) no-repeat;
   background-position: center;
   background-size: cover;
@@ -62,6 +63,24 @@ body {
 }
 .yellow_dragon_img{
   margin-bottom: 20px;
+}
+.inputUserName{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  text-align: center;
+}
+.nameLable{
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: red;
+}
+.nameUser{
+  border-radius: 20px;
+  font-size: 25px;
+  width: 250px;
+  padding: 10px;
 }
 .ready{
   font-size: 25px;
@@ -114,6 +133,8 @@ body {
 
 .quiz_wrapper {
   opacity: 0;
+  pointer-events: none;
+  z-index: 0;
   background-color: white;
   min-height: 50rem;
   width: 80rem;
@@ -230,7 +251,7 @@ button {
 .quiz_question > p {
   font-weight: bold;
   font-size: 1.6rem;
-  height: 6rem;
+  height: auto;
 }
 .quiz_numbers {
   display: flex;
@@ -290,4 +311,86 @@ ul {
   background: white;
   border: 1px solid var(--main-clr);
   color: var(--main-clr);
+}
+.results{
+  width: 60%;
+  height: 90vh;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+.close{
+  font-size: 30px;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.results img{
+  width: 60px;
+  height: 60px;
+}
+header{
+  font-size: 25px;
+}
+main{
+  margin: 40px 0px;
+}
+.name_user{
+  color: white;
+}
+footer button{
+  background-color: rebeccapurple;
+}
+main{
+  width: 80%;
+  height: auto;
+  padding: 20px;
+  font-size: 25px;
+}
+article section{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+footer button{
+  font-size: 22px;
+}
+.statistical{
+  opacity: 0;
+  z-index: 0;
+  background-color: rebeccapurple;
+  pointer-events: none;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  border-radius: 20px;
+  font-size: 20px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+.result_home{
+  margin-right: 15px;
+}
+.share_data{
+  margin-left: 15px;
+}
+.share_data a{
+  text-decoration: none;
+  color: white;
 }
