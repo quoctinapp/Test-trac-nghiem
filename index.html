@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCK - Synthesis of Chemical Knowledge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="Trắc nghiệm thực tế hóa học THPT chương trình GDPT2018">
+    <meta name="keywords" content="trắc nghiệm, hóa học, thực tế, THPT, chương trình GDPT2018, trắc nghiệm hóa học">
+    <meta name="author" content="Quoc Tin Ly Tran">
+    <link rel="shortcut icon" href="SOCK.png" type="image/x-icon">
+    <meta property="og:image" content="./download4.png">
+    <meta property="og:locale" content="en">
+    <meta property="og:description" content="Trắc nghiệm thực tế hóa học THPT chương trình GDPT2018">
+    <meta property="og:author" content="Quoc Tin Ly Tran">
+    <meta property="og:keywords" content="trắc nghiệm, hóa học, thực tế, THPT, chương trình GDPT2018, trắc nghiệm hóa học">
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  </head>
+  <body>
+    <section class="begin">
+      <div class="wrapper">
+        <h2>Đăng nhập</h2>
+        <form action="#">
+          <span>Số báo danh</span>
+          <div class="input-box">
+            <input type="text" placeholder="Nhập số báo danh" required id="IdentificationNumberStudentInp">
+          </div>
+          <span>Họ và tên</span>
+          <div class="input-box">
+            <input type="text" placeholder="Nhập họ và tên" required id="NameStudentInp">
+          </div>
+          <span>Lớp</span>
+          <div class="input-box">
+            <input type="text" placeholder="Nhập lớp" required id="ClassStudentInp">
+          </div>
+          <span>Tên kì thi</span>
+          <div class="input-box">
+            <input type="text" placeholder="Nhập tên kì thi" required id="NameExam">
+          </div>
+          <span>Mật khẩu kì thi</span>
+          <div class="input-box">
+            <input type="password" placeholder="Nhập mật khẩu" required id="PassExam">
+          </div>
+        </form>
+        <div class="input-box button">
+          <input type="Submit" value="Bắt đầu" id="submit">
+        </div>
+      </div>
+    </section>
+
+    <div class="results" id="results">
+      <img src="./download3.jpeg" alt="background_img" class="imageBackground">
+      <div class="close">
+        <i class="fa fa-close"></i>
+      </div>
+      <header>
+        <img src="./complete.png" alt="congrate">
+        <h1>Kết quả</h1>
+      </header>
+      <main>
+        <article>
+          <section class="user">
+            <span>Người làm bài: </span>
+            <a class="name_user" id="name_user" href="#">Default</a>
+          </section>
+          <section class="timer">
+            <span>Thời gian nộp bài: </span>
+            <span id="result_time" >00</span>
+          </section>
+          <section class="right_answer">
+            <span>Số câu đúng: </span>
+            <span id="result_right_answer">00</span>
+          </section>
+          <section class="wrong_answer">
+            <span>Số câu sai: </span>
+            <span id="result_wrong_answer">00</span>
+          </section>
+          <section class="percentage">
+            <span>Tỉ lệ: </span>
+            <span id="result_percentage">00</span>
+          </section>
+          <section class="score">
+            <span>Số điểm: </span>
+            <span id="result_score">00</span>
+          </section>
+        </article>
+      </main>
+      <footer class="footer1">
+        <button type="button" class="result_home">Làm lại</button>
+        <button type="button" class="share_data"><a href="#" id="shareImgData">Chia sẻ</a></button>
+      </footer>
+    </div>
+    
+    <section class="quiz_wrapper">
+      <button class="statistical">Thống kê</button>
+      <div class="quiz_header">
+        <div class="quiz_timer">
+          <i class="fa-regular fa-clock"></i>
+          <div class="quiz_timer_text">
+            <span>Time remaining</span>
+            <p id="timer">00:00:00</p>
+          </div>
+        </div>
+        <button id="quiz_submit" class="quiz_submit">Nộp bài</button>
+      </div>
+      <div class="quiz_container">
+        <div class="quiz_question">
+          <h5>Question 1 of 10</h5>
+          <p id="quiz_title">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+            delectus et magni harum atque, ex nostrum quaerat?
+          </p>
+          <ul>
+            <li><span>A.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>B.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>C.</span><span class="quiz_answer_item">harum</span></li>
+            <li><span>D.</span><span class="quiz_answer_item">harum</span></li>
+          </ul>
+        </div>
+        <div class="quiz_progress">
+          <svg>
+            <circle r="50"></circle>
+            <circle id="progress" r="50"></circle>
+          </svg>
+          <span id="progress_text">9/10</span>
+        </div>
+      </div>
+      <div class="quiz_numbers">
+        <button id="quiz_prev">Prev</button>
+        <ul></ul>
+        <button id="quiz_next">Next</button>
+      </div>
+    </section>
+  </body>
+  <script type="module" src="./main.min.js"></script>
+</html>
